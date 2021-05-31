@@ -48,7 +48,8 @@ export default {
     homeRecommend,
     uniSegmentedControl,
   },
-  data() {
+  
+    data() {
     return {
       items: [
         { title: "推荐" },
@@ -56,11 +57,15 @@ export default {
         { title: "最新" },
         { title: "专辑" },
       ],
-      current: 1,
+      current: 3,
     };
   },
   methods: {
     onClickItem(e) {
+      uni.setNavigationBarTitle({
+        title:
+        this.items[e.currentIndex].title
+      });
       if (this.current !== e.currentIndex) {
         this.current = e.currentIndex;
       }
@@ -74,8 +79,9 @@ console.log("onload");
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .home_tab{
+  background: #fff;
   width: 100%;
   .home_tab_title{
     position: relative;
