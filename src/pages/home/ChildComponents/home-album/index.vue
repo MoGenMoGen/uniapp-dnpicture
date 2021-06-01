@@ -1,5 +1,12 @@
 <template>
-  <scroll-view scroll-y @scrolltolower="handleToLower" class="home_album" v-if="info.banner.length>0">
+  <scroll-view
+    scroll-y
+    @scrolltolower="handleToLower"
+    @scrolltoupper ="handleToUpper"
+    class="home_album"
+    v-if="info.banner.length > 0"
+  >
+    <!-- 轮播图开始 -->
     <view class="home_album_swiper">
       <swiper
         class="swiper"
@@ -13,8 +20,15 @@
         </swiper-item>
       </swiper>
     </view>
+    <!-- 轮播图结束 -->
+    <!-- 列表开始 -->
     <view class="home_album_list">
-      <view class="home_album_item" v-for="item in info.album" :key="item.id">
+      <navigator
+        class="home_album_item"
+        v-for="item in info.album"
+        :key="item.id"
+        :url="`/pages/album/index?id=${item.id}`"
+      >
         <image :src="item.cover" mode="center" />
         <view class="item_info">
           <view class="album_item_title">{{ item.name }}</view>
@@ -24,8 +38,9 @@
             <text class="attention_true" v-else>已关注</text>
           </view>
         </view>
-      </view>
+      </navigator>
     </view>
+    <!-- 列表结束 -->
     <nomore />
   </scroll-view>
 </template>
@@ -40,7 +55,7 @@ export default {
         banner: [],
         album: [],
       },
-      attention:false,
+      attention: false,
       // 请求参数
       params: {
         limit: 10,
@@ -67,10 +82,11 @@ export default {
       if (this.info.banner.length == 0) {
         this.info.banner = data.res.banner;
       }
-      this.info.album = [... this.info.album,...data.res.album];
+      this.info.album = [...this.info.album, ...data.res.album];
       console.log(data);
       console.log("banner", this.info.banner);
     },
+    // 触底刷新
     handleToLower() {
       /**
        * 1.修改请求参数 skip+=limit;
@@ -85,11 +101,11 @@ export default {
 
       console.log("触底");
     },
+    
     // 关注
-    handleAttention(item){
-      item.isfav=!item.isfav;
-
-    }
+    handleAttention(item) {
+      item.isfav = !item.isfav;
+    },
   },
   async mounted() {
     this.getList();
@@ -112,7 +128,7 @@ export default {
     width: 100%;
     padding: 10rpx 0;
     .home_album_item {
-        height: 262rpx;
+      height: 262rpx;
       width: 100%;
       padding: 10rpx;
       box-sizing: border-box;
@@ -124,8 +140,8 @@ export default {
         height: 100%;
       }
       .item_info {
-        height:100%;
-        dispaly:flex;
+        height: 100%;
+        dispaly: flex;
         position: relative;
         flex-direction: column;
         justify-content: flex-start;
@@ -141,10 +157,10 @@ export default {
         }
 
         .album_item_content {
-          padding-left:27rpx;
+          padding-left: 27rpx;
           box-sizing: border-box;
           width: 100%;
-          max-width:calc(100vw - 270rpx);
+          max-width: calc(100vw - 270rpx);
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
@@ -154,19 +170,18 @@ export default {
 
         .album_item_attention {
           position: absolute;
-          bottom:60rpx;
-          right:50rpx;
+          bottom: 60rpx;
+          right: 50rpx;
           .attention_false {
             font-size: 32rpx;
             color: $color;
             border: 1px solid $color;
           }
-          .attention_true{
+          .attention_true {
             font-size: 32rpx;
-            color:#ccc;
+            color: #ccc;
             background: $color;
           }
-
         }
       }
     }

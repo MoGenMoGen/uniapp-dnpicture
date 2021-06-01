@@ -2,9 +2,27 @@
 	
 	"pages": [ 
 		{
+			"path": "pages/demo/index",
+			"style": {
+				"navigationBarTitleText": "学习触屏"
+			}
+		},
+		{
 			"path": "pages/home/index",
 			"style": {
 				"navigationBarTitleText": "首页"
+			}
+		},
+		{
+			"path": "pages/album/index",
+			"style": {
+				"navigationBarTitleText": "专辑详情"
+			}
+		},
+		{
+			"path": "pages/imgDetail/index",
+			"style": {
+				"navigationBarTitleText": "图片详情"
 			}
 		},
 		{

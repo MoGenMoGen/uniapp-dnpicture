@@ -7,12 +7,13 @@
   >
     <!-- 推荐 开始 -->
     <view class="recommend_wrap">
-      <view
+      <navigator
         class="recommend_item"
         v-for="(item, index) in recommends"
         :key="index"
+        :url="`/pages/album/index?id=${item.target}`"
         ><image :src="item.thumb" mode="widthFix"
-      /></view>
+      /></navigator>
     </view>
     <!-- 推荐 结束 -->
     <!-- 月份 开始 -->
@@ -28,8 +29,10 @@
         <view class="months_title_more">更多></view>
       </view>
       <view class="months_contetnt">
-        <view class="months_item" v-for="item in months.items" :key="item.id">
+        <view class="months_item" v-for="(item,index) in months.items" :key="item.id">
+          <go-img :list=" months.items" :index="index">
           <image :src="item.thumb" mode="aspectFill" />
+          </go-img>
         </view>
       </view>
     </view>
@@ -41,8 +44,10 @@
       </view>
 
       <view class="hots_content">
-        <view class="hots_item" v-for="item in hots" :key="item.id">
+        <view class="hots_item" v-for="(item,index) in hots" :key="item.id">
+          <go-img :list="hots" :index="index">
           <image :src="item.thumb" mode="aspectFill"></image>
+          </go-img>
         </view>
       </view>
     </view>
@@ -53,6 +58,7 @@
 </template>
 
 <script>
+import goImg from "@/components/goImg"
 import moment from "moment";
 import nomore from "@/components/nomore";
 export default {
@@ -79,6 +85,7 @@ export default {
   },
   components: {
     nomore,
+    goImg
   },
   methods: {
     // 获取接口数据
