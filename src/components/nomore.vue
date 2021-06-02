@@ -1,5 +1,5 @@
 <template>
-    <p class="noMOre">- 已经到底了 -</p>
+    <view class="noMOre">- 已经到底了 -</view>
 </template>
 
 <script>
