@@ -2,7 +2,7 @@
   <scroll-view
     scroll-y
     @scrolltolower="handleToLower"
-    @scrolltoupper ="handleToUpper"
+    @scrolltoupper="handleToUpper"
     class="home_album"
     v-if="info.banner.length > 0"
   >
@@ -101,7 +101,7 @@ export default {
 
       console.log("触底");
     },
-    
+
     // 关注
     handleAttention(item) {
       item.isfav = !item.isfav;

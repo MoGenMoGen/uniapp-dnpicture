@@ -55,6 +55,12 @@
 			"style": {
 				"navigationBarTitleText": "学习触屏"
 			}
+		},
+		{
+			"path": "pages/videoplay/index",
+			"style": {
+				"navigationBarTitleText": "视频播放"
+			}
 		}
 		
 	],

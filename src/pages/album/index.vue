@@ -45,7 +45,7 @@ export default {
   data() {
     return {
       params: {
-        limit: 7,
+        limit: 10,
         order: "new",
         skip: 0,
         // 1 返回值中有 album 对象 表示第一次请求数据
